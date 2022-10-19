@@ -5,19 +5,20 @@ root = Tk()
 root.title("Calculator")
 frame = ttk.Frame(root, padding=10)
 frame.grid()
-
+#creating root and frame tkinter application
 firstNumberBool = True
 firstNumber = ''
 secondNumberBool = False
 secondNumber = ''
-
+#variables to track numbers in calculator
 addBool = False
 subtractBool = False
 multiplyBool = False
 divideBool = False
-
+#variables to track the operator
 
 ttk.Label(frame, text="").grid(column=1,columnspan=5, row = 1)
+#calculator screen initialisation
 
 def addNumberToLabel(button):
     if firstNumberBool:
@@ -28,8 +29,9 @@ def addNumberToLabel(button):
         global secondNumber
         firstNumber = firstNumber+ secondNumber + button.cget('text')
         ttk.Label(frame, text=firstNumber).grid(column=1, columnspan=5, row=1)
+#method for appending numbers to calculator screen
 
-
+#number buttons and their methods
 one = ttk.Button(frame, text='1' ,command = lambda: addNumberToLabel(one))
 one.grid(column=1, row=2)
 
@@ -60,6 +62,8 @@ nine.grid(column=3, row=4)
 zero = ttk.Button(frame, text = '0', command = lambda: addNumberToLabel(zero))
 zero.grid(column = 2, row=5)
 
+#operator methods for operator buttons
+
 def operator(button):
     global firstNumberBool
     if firstNumberBool:
@@ -83,7 +87,7 @@ def operator(button):
             divideBool= True
 
 
-
+#operator buttons
 add = ttk.Button(frame, text="+",command= lambda: operator(add))
 add.grid(column=4, row=2)
 
@@ -96,6 +100,8 @@ multiply.grid(column=4, row=3)
 divide = ttk.Button(frame, text="/",command=lambda: operator(divide))
 divide.grid(column=5, row=3)
 
+
+#equals method for calculation
 def equalsFunc():
     global firstNumber
     global secondNumber
@@ -133,13 +139,11 @@ def equalsFunc():
     multiplyBool = False
     divideBool = False
 
-
-
-
+#equals button
 
 equals = ttk.Button(frame, text="=", command = lambda:equalsFunc())
 equals.grid(column=4, columnspan=2, row=4)
 
 
-
+#main loop to run the calculator
 root.mainloop()
